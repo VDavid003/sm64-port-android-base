@@ -1,4 +1,4 @@
-# sm64ex Android Port
+# sm64ex nightly branch Android Port
 This is a port of the reconstructed Super Mario 64 source code to Android using SDL2 with OpenGL ES 2.0.
 
 It has cross-platform Touch Controls, Audio works, it saves the game to the app's internal storage and you can play it with an external keyboard or controller as well (tested on PS3 controller).
