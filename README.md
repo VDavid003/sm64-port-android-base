@@ -1,11 +1,7 @@
 # Super Mario 64 Android Port
 This is a port of the reconstructed Super Mario 64 source code to Android using SDL2 with OpenGL ES 2.0.
 
-This port currently has no touch controls yet.
-
-Audio works, it saves the game to the app's internal storage and you can play it with an external keyboard or controller (tested on PS3 controller).
-
-I don't know if using a "controller keyboard" app works or not, if you want to, test it!
+It has cross-platform Touch Controls, Audio works, it saves the game to the app's internal storage and you can play it with an external keyboard or controller as well (tested on PS3 controller).
 
 # Build instructions (Linux)
 0. Clone the repo with `git clone https://github.com/VDavid003/sm64-port-android-base.git` and init submodules with `git submodule init && git submodule update`.
