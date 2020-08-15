@@ -20,3 +20,12 @@ Coming soon(tm)
 If you use `EXTERNAL_DATA`, you'll find a zip named `base.zip` in `app/jni/src/build/<version>_pc/res`.
 
 You should take this zip and put it in `Internal Storage/Android/data/com.vdavid003.sm64port/files`
+
+# Render96/SGI Models instructions (Only tested on 1.4.1)
+1. Do step 0, and 1.
+2. Extract the Render96 zip file to app/jni/src overwriting everything.
+3. After changing directory to app/jni/src, apply the `render96_android.patch` patch in enhancements with `tools/apply_patch.sh enhancements/render96_android.patch`.
+4. (STRONGLY RECOMMENDED) Apply the 60fps patch with `tools/apply_patch.sh enhancements/60fps_ex.patch`. This not only makes it look better, but improves performance as well (doubles it when VSync is on, and turning it off is not recommended)!
+5. Do steps 2 to 7.
+6. Follow the EXTERNAL_DATA option instructions as well!
+7. Turn on VSync in the game to avoid random "over-speedups" where when getting out of a laggy area, the game suddenly becomes way too fast. Also if you have a non-60hz phone, try setting your refresh rate to 60hz.
