@@ -22,6 +22,7 @@ If you use `EXTERNAL_DATA`, you'll find a zip named `base.zip` in `app/jni/src/b
 You should take this zip and put it in `Internal Storage/Android/data/com.vdavid003.sm64port/files`
 
 # Render96/SGI Models instructions (Only tested on 1.4.1)
+0. If a non-Render96 version is installed, read step 7 and enable vsync (vertical sync) BEFORE updating to Render96 as sometimes switching it on gets hard.
 1. Do step 0, and 1.
 2. Extract the Render96 zip file to app/jni/src overwriting everything.
 3. After changing directory to app/jni/src, apply the `render96_android.patch` patch in enhancements with `tools/apply_patch.sh enhancements/render96_android.patch`.
