@@ -6,6 +6,7 @@ It has cross-platform Touch Controls, Audio works, it saves the game to the app'
 # Build instructions
 
 ## Linux
+
 **Install dependencies:**
 
 This depends on your distro, but if you can build the PC port and you have Android SDK/NDK and you are able to build Android apps using gradle, you should be fine.
@@ -46,7 +47,41 @@ ls -al ./app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ## Windows
-Coming soon(tm)
+
+**Install dependencies:**
+
+You'll need everything you need to make Windows builds (not just vanilla sm64 ones, but sm64ex ones), and to be able to build Android apps using `gradlew.bat`. This includes Java JDK (with the JDK being JAVA_HOME) and Android SDK/NDK. Every commmand is executed in MSYS2 unless otherwise noted.
+
+**Clone the repository:**
+```sh
+git clone --recursive https://github.com/VDavid003/sm64-port-android-base
+```
+
+**Copy in your baserom:**
+Use the file explorer, or whatever you want, just put it in `app/jni/src`, and name it like you'd do on the PC port.
+```sh
+cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
+```
+
+**Get SDL sources:**
+```sh
+./getSDL.sh
+```
+
+**Perform native build twice:**
+```sh
+# if you have more cores available, you can increase the --jobs parameter
+cd app/jni/src
+make --jobs 4
+make --jobs 4
+cd ../../..
+```
+
+**Perform Android build:**
+Do this in a normal Command Prompt!
+```
+gradlew.bat assembleDebug
+```
 
 ## Docker
 
