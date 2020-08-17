@@ -6,12 +6,43 @@ It has cross-platform Touch Controls, Audio works, it saves the game to the app'
 # Build instructions
 
 ## Linux
-0. Clone the repo with `git clone https://github.com/VDavid003/sm64-port-android-base.git` and init submodules with `git submodule init && git submodule update`.
-1. Make sure you can compile the non-Android PC port and copy the base ROM to app/jni/src like you'd normally do.
-2. Build the PC version inside app/jni/src. To do this just `pushd app/jni/src` and `make`.
-3. After going back to the root folder (`popd`), get SDL with `./getSDL.sh`.
-4. Configure the options at the top for your liking in app/jni/src/Android.mk
-5. Build (and install) using gradle (`./gradlew installDebug`)
+**Install dependencies:**
+
+This depends on your distro, but if you can build the PC port and you have Android SDK/NDK and you are able to build Android apps using gradle, you should be fine.
+
+**Clone the repository:**
+```sh
+git clone --recursive https://github.com/VDavid003/sm64-port-android-base
+cd sm64-port-android-base
+```
+
+**Copy in your baserom:**
+```sh
+cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
+```
+
+**Get SDL sources:**
+```sh
+./getSDL.sh
+```
+
+**Perform native build:**
+```sh
+# if you have more cores available, you can increase the --jobs parameter
+cd app/jni/src
+make --jobs 4
+cd ../../..
+```
+
+**Perform Android build:**
+```sh
+./gradlew assembleDebug
+```
+
+**Enjoy your apk:**
+```sh
+ls -al ./app/build/outputs/apk/debug/app-debug.apk
+```
 
 ## Windows
 Coming soon(tm)
@@ -56,3 +87,6 @@ docker run --rm -v $(pwd):/sm64 sm64_android sh -c "./gradlew assembleDebug"
 ```sh
 ls -al ./app/build/outputs/apk/debug/app-debug.apk
 ```
+
+# Configuration
+If you want to customize the build with build options, you should make the native build with those options first (put them after the make command like on normal repos), then before performing the Android build, edit `app/jni/src/Android.mk` and enable the options you'd like.
