@@ -6,14 +6,44 @@ It has cross-platform Touch Controls, Audio works, it saves the game to the app'
 # Build instructions
 
 ## Linux
-0. Clone the repo with `git clone https://github.com/VDavid003/sm64-port-android-base.git --branch sm64ex` and init submodules with `git submodule init && git submodule update`.
-1. Make sure you can compile the non-Android PC port and copy the base ROM to app/jni/src like you'd normally do.
-2. Build the PC version inside app/jni/src. To do this just `pushd app/jni/src` and `make`. If you will use custom options you should probably use them here too like you'd do on normal sm64ex!
-3. `make` again. This is important, since the ex fork has a problem where it doesn't build some stuff on the first build.
-4. After going back to the root folder (`popd`), get SDL with `./getSDL.sh`.
-5. Configure the options at the top for your liking in app/jni/src/Android.mk
-6. Build (and install) using gradle (`./gradlew installDebug`)
-7. If you used `EXTERNAL_DATA`, follow the instructions for it below!
+**Install dependencies:**
+
+This depends on your distro, but if you can build the PC port and you have Android SDK/NDK and you are able to build Android apps using gradle, you should be fine.
+
+**Clone the repository:**
+```sh
+git clone --recursive https://github.com/VDavid003/sm64-port-android-base
+cd sm64-port-android-base
+```
+
+**Copy in your baserom:**
+```sh
+cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
+```
+
+**Get SDL sources:**
+```sh
+./getSDL.sh
+```
+
+**Perform native build twice:**
+```sh
+# if you have more cores available, you can increase the --jobs parameter
+cd app/jni/src
+make --jobs 4
+make --jobs 4
+cd ../../..
+```
+
+**Perform Android build:**
+```sh
+./gradlew assembleDebug
+```
+
+**Enjoy your apk:**
+```sh
+ls -al ./app/build/outputs/apk/debug/app-debug.apk
+```
 
 ## Windows
 Coming soon(tm)
@@ -60,17 +90,33 @@ docker run --rm -v $(pwd):/sm64 sm64_android sh -c "./gradlew assembleDebug"
 ls -al ./app/build/outputs/apk/debug/app-debug.apk
 ```
 
-# EXTERNAL_DATA option
+# Configuration
+If you want to customize the build with build options, you should make the native build with those options first (put them after the make command like on normal repos), then before performing the Android build, edit `app/jni/src/Android.mk` and enable the options you'd like.
+
+## EXTERNAL_DATA option
 If you use `EXTERNAL_DATA`, you'll find a zip named `base.zip` in `app/jni/src/build/<version>_pc/res`.
 
 You should take this zip and put it in `Internal Storage/Android/data/com.vdavid003.sm64port/files`
 
-# Render96/SGI Models instructions (Only tested on 1.4.1)
-0. If a non-Render96 version is installed, read step 7 and enable vsync (vertical sync) BEFORE updating to Render96 as sometimes switching it on gets hard.
-1. Do step 0, and 1.
-2. Extract the Render96 zip file to app/jni/src overwriting everything.
-3. After changing directory to app/jni/src, apply the `render96_android.patch` patch in enhancements with `tools/apply_patch.sh enhancements/render96_android.patch`.
-4. (STRONGLY RECOMMENDED) Apply the 60fps patch with `tools/apply_patch.sh enhancements/60fps_ex.patch`. This not only makes it look better, but improves performance as well (doubles it when VSync is on, and turning it off is not recommended)!
-5. Do steps 2 to 7.
-6. Follow the EXTERNAL_DATA option instructions as well!
-7. Turn on VSync in the game to avoid random "over-speedups" where when getting out of a laggy area, the game suddenly becomes way too fast. Also if you have a non-60hz phone, try setting your refresh rate to 60hz.
+## Render96/SGI Models instructions (Only tested on 1.4.1)
+The 60fps patch is strongly recommended as it not only makes the game look smoother but doubles the performance as well with VSync on.
+
+Turning VSync off is not recommended as it can cause random "over-speedups" where when getting out of a laggy area, the game suddenly becomes way too fast. Also if you have a non-60hz phone, try setting your refresh rate to 60hz.
+
+Sometimes turning VSync on is problematic, so if you have the game already installed, enable it before installing a heavier version.
+
+**Follow normal instructions, but stop before doing the native build**
+
+**Extract the Render96 zip file to app/jni/src overwriting everything**
+
+**Apply the render96_android patch and the 60fps patch:**
+```sh
+cd app/jni/src
+tools/apply_patch.sh enhancements/render96_android.patch
+tools/apply_patch.sh enhancements/60fps_ex.patch
+cd ../../..
+```
+
+**Continue with the normal instructions and build the game.**
+
+**Follow the instructions for EXTERNAL_DATA**
