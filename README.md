@@ -3,6 +3,11 @@ This is a port of the reconstructed Super Mario 64 source code to Android using 
 
 It has cross-platform Touch Controls, Audio works, it saves the game to the app's internal storage and you can play it with an external keyboard or controller as well (tested on PS3 controller).
 
+# Branches:
+* `master`: Vanilla SM64 port, barely any modifications.
+* `sm64ex`: Master branch of sm64ex.
+* `sm64ex_nightly`: Nightly branch of sm64ex. Use this one for Render96/SGI models!
+
 # Build instructions
 
 ## Linux
