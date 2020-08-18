@@ -133,7 +133,7 @@ If you use `EXTERNAL_DATA`, you'll find a zip named `base.zip` in `app/jni/src/b
 
 You should take this zip and put it in `Internal Storage/Android/data/com.vdavid003.sm64port/files`
 
-## Render96/SGI Models instructions (Only tested on 1.4.1)
+## Render96/SGI Models instructions (Only tested on 1.4.2)
 The 60fps patch is strongly recommended as it not only makes the game look smoother but doubles the performance as well with VSync on.
 
 Turning VSync off is not recommended as it can cause random "over-speedups" where when getting out of a laggy area, the game suddenly becomes way too fast. Also if you have a non-60hz phone, try setting your refresh rate to 60hz.
