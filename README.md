@@ -54,7 +54,7 @@ You'll need everything you need to make Windows builds (not just vanilla sm64 on
 
 **Clone the repository:**
 ```sh
-git clone --recursive https://github.com/VDavid003/sm64-port-android-base
+git clone --recursive https://github.com/VDavid003/sm64-port-android-base --branch sm64ex
 ```
 
 **Copy in your baserom:**
