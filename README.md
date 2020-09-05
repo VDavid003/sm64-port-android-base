@@ -44,6 +44,13 @@ cd app/jni/src
 make --jobs 4
 cd ../../..
 ```
+If you are building for a 32 bit Android platform, set TARGET_BITS to 32:
+```sh
+# if you have more cores available, you can increase the --jobs parameter
+cd app/jni/src
+make --jobs 4 TARGET_BITS=32
+cd ../../..
+```
 
 **Perform Android build:**
 ```sh
@@ -89,6 +96,13 @@ cd app/jni/src
 make --jobs 4
 cd ../../..
 ```
+If you are building for a 32 bit Android platform, make sure you set TARGET_BITS to 32:
+```sh
+# if you have more cores available, you can increase the --jobs parameter
+cd app/jni/src
+make --jobs 4 TARGET_BITS=32
+cd ../../..
+```
 
 **Perform Android build:**
 Do this in a normal Command Prompt!
@@ -125,6 +139,11 @@ docker run --rm -v $(pwd):/sm64 sm64_android sh -c "ln -nsf /SDL2-2.0.12/include
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
 docker run --rm -v $(pwd):/sm64 sm64_android sh -c "cd /sm64/app/jni/src && make --jobs 4"
+```
+If you are building for a 32 bit Android platform, make sure you set TARGET_BITS to 32:
+```sh
+# if you have more cores available, you can increase the --jobs parameter
+docker run --rm -v $(pwd):/sm64 sm64_android sh -c "cd /sm64/app/jni/src && make --jobs 4 TARGET_BITS=32"
 ```
 
 **Perform Android build:**
