@@ -38,6 +38,8 @@ cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
 ```
 
 **Perform native build:**
+
+It should be noted that the bitness of the native build has to match the bitness of the target Android device. ie a 64 bit native build will only work on a 64 bit Android device.
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
 cd app/jni/src
@@ -89,14 +91,17 @@ cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
 ./getSDL.sh
 ```
 
+
 **Perform native build:**
+
+It should be noted that the bitness of the native build has to match the bitness of the target Android device. ie a 64 bit native build will only work on a 64 bit Android device.
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
 cd app/jni/src
 make --jobs 4
 cd ../../..
 ```
-If you are building for a 32 bit Android platform, make sure you set TARGET_BITS to 32:
+If you are building for a 32 bit Android platform, set TARGET_BITS to 32:
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
 cd app/jni/src
