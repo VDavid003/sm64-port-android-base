@@ -131,9 +131,9 @@ If you want to customize the build with build options, you should make the nativ
 ## EXTERNAL_DATA option
 If you use `EXTERNAL_DATA`, you'll find a zip named `base.zip` in `app/jni/src/build/<version>_pc/res`.
 
-You should take this zip and put it in `Internal Storage/Android/data/com.vdavid003.sm64port/files`
+You should take this zip and put it in `Internal Storage/Android/data/com.vdavid003.sm64port/files/res`
 
-## Render96/SGI Models instructions (Only tested on 1.4.2)
+## Render96/Other DynOS models instructions
 The 60fps patch is strongly recommended as it not only makes the game look smoother but doubles the performance as well with VSync on.
 
 Turning VSync off is not recommended as it can cause random "over-speedups" where when getting out of a laggy area, the game suddenly becomes way too fast. Also if you have a non-60hz phone, try setting your refresh rate to 60hz.
@@ -142,16 +142,20 @@ Sometimes turning VSync on is problematic, so if you have the game already insta
 
 **Follow normal instructions, but stop before doing the native build**
 
-**Extract the Render96 zip file to app/jni/src overwriting everything**
-
-**Apply the render96_android patch and the 60fps patch:**
+**Apply the DynOS patch and the 60fps patch:**
 ```sh
 cd app/jni/src
-git apply enhancements/render96_android.patch
+git apply enhancements/DynOS.1.0.patch
 git apply enhancements/60fps_ex.patch
 cd ../../..
 ```
 
-**Continue with the normal instructions and build the game.**
+**Continue with the normal instructions and build and install the game.**
 
 **Follow the instructions for EXTERNAL_DATA**
+
+**Create `Internal Storage/Android/data/com.vdavid003.sm64port/files/dynos/packs` directory**
+
+**Extract the Render96 DynOS zip file to `Internal Storage/Android/data/com.vdavid003.sm64port/files/dynos/packs`**
+
+**Enable the model pack using DynOS**
