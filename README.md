@@ -139,3 +139,41 @@ ls -al ./app/build/outputs/apk/debug/app-debug.apk
 
 # Configuration
 If you want to customize the build with build options, you should make the native build with those options first (put them after the make command like on normal repos), then before performing the Android build, edit `app/jni/src/Android.mk` and enable the options you'd like.
+
+
+# Compile on Android
+Follow these steps to configure the build environment in Android and compile the from scratch:
+
+**Install Termux from Google Play Store:**
+
+**Install the required dependencies inside the Termux environment:**
+```sh
+pkg install git wget make python getconf zip apksigner clang
+```
+**Clone the appropriate repository using git:**
+```sh
+git clone https://github.com/VDavid003/sm64-port-android
+```
+**Change directory to the newly cloned directory:**
+```sh
+cd sm64-port-android
+```
+**Copy the baserom of the game using Termux. We don't support or condone pirating, you must supply your own copy!**
+**Termux-setup-storage**
+```sh
+cp /sdcard/path/to/your/baserom.z64 ./baserom.us.z64
+```
+**Get SDL includes:**
+```sh
+./getSDL.sh
+```
+**Start the build:**
+```sh
+make --jobs 4
+```
+**Note: You can increase the value of the “jobs” parameter depending on how many CPU cores you can devote to the building process.**
+**If things go well, the resulting Super Mario 64 APK should be found inside the “build” folder:**
+```sh
+ls -al build/us_pc/sm64.us.f3dex2e.apk
+```
+**That's it! You should have the APK after compilation which can be easily sideloaded on an Android device.**
